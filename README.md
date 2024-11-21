@@ -1,11 +1,3 @@
-## Getting Started
+## Updating db scheme
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+npx prisma db push
