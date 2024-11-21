@@ -6,7 +6,8 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
@@ -28,6 +29,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "prisma": "^5.22.0"
   }
 }

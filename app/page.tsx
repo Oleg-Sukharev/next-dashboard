@@ -21,7 +21,7 @@ export default function Home() {
         const res = await fetch("http://localhost:3001/api/issues", { signal });
         const data = await res.json();
 
-        console.log(data, 'data');
+        console.log(data, "data");
 
         setIssues(data);
       } catch (error) {
@@ -32,7 +32,7 @@ export default function Home() {
     fetchIssues();
 
     return () => controller.abort();
-  }, [])
+  }, []);
 
   const createIssue = () => {
     fetch("/api/issues", {
@@ -59,8 +59,10 @@ export default function Home() {
       });
   };
 
-  return <div>
-    <pre>{JSON.stringify(issues, null, 2)}</pre>
-    <button onClick={createIssue}>Click me</button>
-  </div>;
+  return (
+    <div>
+      <pre>{JSON.stringify(issues, null, 2)}</pre>
+      <button onClick={createIssue}>Click me</button>
+    </div>
+  );
 }
