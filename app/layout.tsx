@@ -1,5 +1,6 @@
+import "@radix-ui/themes/styles.css";
 import "./globals.css";
-
+import { Theme } from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import NavBar from "./NavBar";
@@ -15,8 +16,10 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <main role="main">{children}</main>
+        <Theme>
+          <NavBar />
+          <main role="main">{children}</main>
+        </Theme>
       </body>
     </html>
   );

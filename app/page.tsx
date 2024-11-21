@@ -2,6 +2,7 @@
 
 // import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Flex, Text, Button } from "@radix-ui/themes";
 
 interface Issue {
   id: string;
@@ -61,6 +62,10 @@ export default function Home() {
 
   return (
     <div>
+      <Flex direction="column" gap="2">
+        <Text>Hello from Radix Themes</Text>
+        <Button>Let's go</Button>
+      </Flex>
       <pre>{JSON.stringify(issues, null, 2)}</pre>
       <button onClick={createIssue}>Click me</button>
     </div>
