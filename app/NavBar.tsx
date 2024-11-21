@@ -1,7 +1,6 @@
 "use client";
 
 import { AiFillBug } from "react-icons/ai";
-// rafce
 import Link from "next/link";
 import classnames from "classnames";
 import { usePathname } from "next/navigation";
@@ -31,18 +30,20 @@ const NavBar = () => {
       </Link>
       <ul className="flex space-x-6">
         {Links.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className={classnames({
-              "text-slate-900": href === currentPath,
-              "text-slate-500": href !== currentPath,
-              "border-2 border-transparent p-4 outline-none transition-colors hover:text-slate-900 focus-visible:border-black":
-                true,
-            })}
-          >
-            {label}
-          </Link>
+          <li key={href}>
+            <Link
+              key={href}
+              href={href}
+              className={classnames({
+                "text-slate-900": href === currentPath,
+                "text-slate-500": href !== currentPath,
+                "border-2 border-transparent p-4 outline-none transition-colors hover:text-slate-900 focus-visible:border-black":
+                  true,
+              })}
+            >
+              {label}
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>
