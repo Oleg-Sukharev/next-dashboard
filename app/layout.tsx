@@ -29,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.variable}>
-        <div>test</div>
         <Theme appearance="light" accentColor="violet">
           <NavBar />
           <main className="p-5">{children}</main>
