@@ -1,6 +1,6 @@
-import '@radix-ui/themes/styles.css';
-import './theme-config.css';
-import './globals.css';
+import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
+import "./globals.css";
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import {
@@ -14,7 +14,7 @@ const font = Roboto({
   // style: ['normal', 'italic'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto',
+  variable: "--font-roboto",
 })
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.variable}>
+      <body className={`${font.variable} font-sans`}>
         <Theme appearance="light" accentColor="violet">
           <NavBar />
           <main className="p-5">{children}</main>
