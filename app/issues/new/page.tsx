@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ErrorMessage } from '@/app/components';
 import { createIssueSchema } from '@/app/validationSchema';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Callout, Spinner, TextField } from '@radix-ui/themes';
+import { Button, Callout, Spinner, TextField, Skeleton } from '@radix-ui/themes';
 import 'easymde/dist/easymde.min.css';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,10 @@ import { z } from "zod";
 
 const SimpleMDE = dynamic(
   () => import('react-simplemde-editor'),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => <Skeleton height="305px" />,
+  }
 );
 
 type IssueForm = z.infer<typeof createIssueSchema>;
@@ -55,7 +58,13 @@ const NewIssuePage = () => {
           name="description"
           control={control}
           render={({ field }) => (
-            <SimpleMDE placeholder="Description" {...field} />
+            <SimpleMDE
+              placeholder="Description"
+              {...field}
+              options={{
+                maxHeight: "200px"
+              }}
+            />
           )}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
