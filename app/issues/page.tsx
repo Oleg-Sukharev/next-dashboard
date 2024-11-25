@@ -42,4 +42,8 @@ const IssuesPage = async () => {
   );
 };
 
+// Route Segment Config
+export const dynamic = 'force-dynamic';
+// export const revalidate = '60';
+
 export default IssuesPage;
