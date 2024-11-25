@@ -6,20 +6,12 @@ import { issueSchema } from '@/app/validationSchemas';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, Spinner, TextField, Skeleton } from '@radix-ui/themes';
 import 'easymde/dist/easymde.min.css';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from "zod";
 import { Issue } from '@prisma/client';
-
-const SimpleMDE = dynamic(
-  () => import('react-simplemde-editor'),
-  {
-    ssr: false,
-    loading: () => <Skeleton height="305px" />,
-  }
-);
+import SimpleMDE from 'react-simplemde-editor';
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -69,9 +61,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             <SimpleMDE
               placeholder="Description"
               {...field}
-              options={{
-                maxHeight: "200px"
-              }}
+            // options={{
+            //   maxHeight: "200px"
+            // }}
             />
           )}
         />
