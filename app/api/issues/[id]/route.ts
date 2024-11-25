@@ -4,8 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }) {
-    
+  { params }: { params: Promise<{ id: string }>}) 
+  {
+  const resolvedParams = await params; 
+
   const body = await request.json();
 
   const validation = issueSchema.safeParse(body);
@@ -13,7 +15,7 @@ export async function PATCH(
     return NextResponse.json(validation.error.format(), { status: 400 });
 
   const issue = await prisma.issue.findUnique({
-    where: { id: params.id }
+    where: { id: resolvedParams.id }
   });
 
   if (!issue)
@@ -28,13 +30,13 @@ export async function PATCH(
 
   return NextResponse.json(updatedIssue);
 }
-
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const resolvedParams = await params; 
   const issue = await prisma.issue.findUnique({
-    where: { id: params.id },
+    where: { id: resolvedParams.id },
   });
 
   if (!issue) {
@@ -42,7 +44,7 @@ export async function DELETE(
   }
 
   await prisma.issue.delete({
-    where: { id: params.id },
+    where: { id: resolvedParams.id },
   });
 
   return NextResponse.json({ message: 'Issue deleted successfully' });
