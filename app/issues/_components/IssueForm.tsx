@@ -39,7 +39,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       }
 
       router.push('/issues');
-    } catch (error) {
+    } catch {
       setError('An unexpected error occurred.');
     }
   });
