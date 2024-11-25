@@ -1,4 +1,4 @@
-import { Flex, Card, Box, Skeleton } from '@radix-ui/themes'
+import { Flex, Card, Box, Skeleton } from '@radix-ui/themes';
 
 const LoadingIssueDetailPage = () => {
   return (
@@ -14,7 +14,7 @@ const LoadingIssueDetailPage = () => {
         <Skeleton />
       </Card>
     </Box>
-  )
-}
+  );
+};
 
-export default LoadingIssueDetailPage
+export default LoadingIssueDetailPage;

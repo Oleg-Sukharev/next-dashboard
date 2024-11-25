@@ -1,5 +1,5 @@
-import { Status } from '@prisma/client'
-import { Badge } from '@radix-ui/themes'
+import { Status } from '@prisma/client';
+import { Badge } from '@radix-ui/themes';
 
 const statusMap: Record<
   Status,
@@ -15,7 +15,7 @@ const IssueStatusBadge = ({ status }: { status: Status }) => {
     <Badge color={statusMap[status].color}>
       {statusMap[status].label}
     </Badge>
-  )
-}
+  );
+};
 
-export default IssueStatusBadge
+export default IssueStatusBadge;

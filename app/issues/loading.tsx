@@ -1,9 +1,9 @@
-import { Table, Skeleton } from "@radix-ui/themes"
+import { Table, Skeleton } from "@radix-ui/themes";
 import IssueActions from "./IssueActions";
 
 const issues = Array.from({ length: 5 }, (_, i) => i);
 
-const SkeletonItem = () => <Skeleton height='21px' />
+const SkeletonItem = () => <Skeleton height='21px' />;
 
 const LoadingIssuesPage = () => {
   return (
@@ -35,7 +35,7 @@ const LoadingIssuesPage = () => {
         </Table.Body>
       </Table.Root>
     </div>
-  )
-}
+  );
+};
 
-export default LoadingIssuesPage
+export default LoadingIssuesPage;

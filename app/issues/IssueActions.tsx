@@ -8,7 +8,7 @@ const IssueActions = () => {
         <Link href="/issues/new">New Issue</Link>
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default IssueActions
+export default IssueActions;

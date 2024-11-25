@@ -14,7 +14,7 @@ const IssueForm = dynamic(
 const NewIssuePage = () => {
   return (
     <IssueForm />
-  )
-}
+  );
+};
 
-export default NewIssuePage
+export default NewIssuePage;

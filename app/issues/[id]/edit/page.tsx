@@ -1,4 +1,4 @@
-import prisma from '@/prisma/client'
+import prisma from '@/prisma/client';
 import { notFound } from 'next/navigation';
 import EditIssueForm from './EditIssueForm';
 
@@ -16,6 +16,6 @@ const EditIssuePage = async ({ params }: {
 
   return (
     <EditIssueForm issue={issue} />
-  )
-}
-export default EditIssuePage
+  );
+};
+export default EditIssuePage;

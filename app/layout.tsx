@@ -15,7 +15,7 @@ const font = Roboto({
   subsets: ['latin'],
   display: 'swap',
   variable: "--font-roboto",
-})
+});
 
 export const metadata: Metadata = {
   title: 'Dashboard',
