@@ -35,7 +35,7 @@ export default function Home() {
   //   return () => controller.abort();
   // }, []);
 
-  // const createIssue = () => {
+  // const issueSchema = () => {
   //   fetch("/api/issues", {
   //     method: "POST",
   //     headers: {
@@ -67,7 +67,7 @@ export default function Home() {
         <Button>Let's go</Button>
       </Flex>
       {/* <pre>{JSON.stringify(issues, null, 2)}</pre>
-      <button onClick={createIssue}>Click me</button> */}
+      <button onClick={issueSchema}>Click me</button> */}
     </div>
   );
 }
