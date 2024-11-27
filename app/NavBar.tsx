@@ -1,51 +1,56 @@
 "use client";
 
-import { AiFillBug } from "react-icons/ai";
 import Link from "next/link";
-import classnames from "classnames";
 import { usePathname } from "next/navigation";
-
-const Links = [
-  {
-    href: "/",
-    label: "Dashboard",
-  },
-  {
-    href: "/issues",
-    label: "Issues",
-  },
-];
+import React from "react";
+import { AiFillBug } from "react-icons/ai";
+import { useSession } from "next-auth/react";
+import { Box, Container, Flex } from "@radix-ui/themes";
+import mc from "@/utils/mergeClasses";
 
 const NavBar = () => {
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
+
+  const links = [
+    { label: "Dashboard", href: "/" },
+    { label: "Issues", href: "/issues/list" },
+  ];
 
   return (
-    <nav className="mb-5 flex items-center space-x-8 border-b-2 px-5 py-2">
-      <Link
-        className="border-2 border-transparent p-2 outline-none focus-visible:border-black"
-        href="/"
-        area-label="dashboard"
-      >
-        <AiFillBug />
-      </Link>
-      <ul className="flex space-x-6">
-        {Links.map(({ href, label }) => (
-          <li key={href}>
-            <Link
-              key={href}
-              href={href}
-              className={classnames({
-                "text-slate-900": href === currentPath,
-                "text-slate-500": href !== currentPath,
-                "border-2 border-transparent p-4 outline-none transition-colors hover:text-slate-900 focus-visible:border-black":
-                  true,
-              })}
-            >
-              {label}
+    <nav className="border-b mb-5 px-5 py-3">
+      <Container>
+        <Flex justify="between">
+          <Flex align="center" gap="3">
+            <Link href="/">
+              <AiFillBug />
             </Link>
-          </li>
-        ))}
-      </ul>
+            <ul className="flex space-x-6">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    className={mc(
+                      link.href === currentPath ? "text-zinc-900" : "text-zinc-500",
+                      "hover:text-zinc-800 transition-colors",
+                    )}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Flex>
+          <Box>
+            {status === "authenticated" && (
+              <Link href="/api/auth/signout">Log out</Link>
+            )}
+            {status === "unauthenticated" && (
+              <Link href="/api/auth/signin">Login</Link>
+            )}
+          </Box>
+        </Flex>
+      </Container>
     </nav>
   );
 };
