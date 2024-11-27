@@ -19,18 +19,17 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  debug: true,
   // debug: process.env.NODE_ENV === "development",
-  callbacks: {
-    async jwt({ token, account, user }) {
-      console.log("JWT Callback Payload:", { token, account, user });
-      return token;
-    },
-    async session({ session, token }) {
-      console.log("Session Callback Payload:", { session, token });
-      return session;
-    },
-  },
+  // callbacks: {
+  //   async jwt({ token, account, user }) {
+  //     console.log("JWT Callback Payload:", { token, account, user });
+  //     return token;
+  //   },
+  //   async session({ session, token }) {
+  //     console.log("Session Callback Payload:", { session, token });
+  //     return session;
+  //   },
+  // },
 };
 
 export default authOptions;
