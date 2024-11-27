@@ -1,6 +1,7 @@
 ## Updating db scheme
 
-npx prisma db push
+1. npx prisma generate
+2. npx prisma db push
 
 ## Features
 

@@ -9,6 +9,7 @@ import {
   // ThemePanel
 } from '@radix-ui/themes';
 import NavBar from './NavBar';
+import AuthProvider from "./auth/Provider";
 
 const font = Roboto({
   weight: ['400'],
@@ -30,16 +31,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.variable} font-sans`}>
-        <Theme appearance="light" accentColor="violet">
-          <NavBar />
-          <main className="p-5">
-            <Container>
-              {children}
-            </Container>
-          </main>
+        <AuthProvider>
+          <Theme appearance="light" accentColor="violet">
+            <NavBar />
+            <main className="p-5">
+              <Container>
+                {children}
+              </Container>
+            </main>
 
-          {/* <ThemePanel /> */}
-        </Theme>
+            {/* <ThemePanel /> */}
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
