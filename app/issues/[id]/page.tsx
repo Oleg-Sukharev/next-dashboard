@@ -5,13 +5,22 @@ import EditIssueButton from './EditIssueButton';
 import IssueDetails from './IssueDetails';
 import DeleteIssueButton from '../edit/[id]/DeleteIssueButton';
 
+const getIssue = async (id: string) => {
+  try {
+    const issue = await prisma.issue.findUnique({
+      where: { id: String(id) },
+    });
+
+    return issue;
+  } catch {
+    return null
+  }
+}
+
 const IssueDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
-  const issue = await prisma.issue.findUnique({
-    where: { id: id },
-  });
-
+  const issue = await getIssue(id);
   if (!issue) notFound();
 
   return (
