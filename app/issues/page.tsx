@@ -3,10 +3,22 @@ import prisma from '@/prisma/client';
 import { IssueStatusBadge, Link } from '../components';
 // import delay from 'delay';
 import IssueActions from './IssueActions';
+import { Status } from '@prisma/client'
 
-const IssuesPage = async () => {
-  const issues = await prisma.issue.findMany();
+const IssuesPage = async ({
+  searchParams,
+}: { searchParams: Promise<{ status: Status }> }) => {
+  const { status } = await searchParams;
   // await delay(3000);
+
+  const statuses = Object.values(Status);
+  const activeStatus = statuses.includes(status) ? status : undefined;
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status: activeStatus
+    }
+  });
 
   return (
     <div>
