@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination';
 import IssueTable, { columnNames as issueColumnNames } from './IssueTable';
 import { Flex } from '@radix-ui/themes';
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 10;
 
 const IssuesPage = async ({ searchParams }: {
   searchParams: Promise<{
