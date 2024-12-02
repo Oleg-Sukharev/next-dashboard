@@ -6,6 +6,7 @@ import IssueActions from './IssueActions';
 import NextLink from 'next/link';
 import { Issue, Status } from "@prisma/client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
+import Pagination from '../components/Pagination';
 
 const COLUMNS: {
   label: string;
@@ -90,6 +91,8 @@ const IssuesPage = async ({ searchParams }: {
           ))}
         </Table.Body>
       </Table.Root>
+
+      <Pagination itemCount={100} pageSize={10} currentPage={10} />
     </div>
   );
 };
