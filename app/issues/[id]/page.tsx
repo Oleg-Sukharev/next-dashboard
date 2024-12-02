@@ -7,18 +7,20 @@ import DeleteIssueButton from '../edit/[id]/DeleteIssueButton';
 import authOptions from '@/app/auth/authOptions';
 import { getServerSession } from 'next-auth';
 import AssigneeSelect from '../AssigneeSelect';
+import { cache } from 'react';
 
-const getIssue = async (id: string) => {
+const getIssue = cache(async (issueId: string) => {
   try {
     const issue = await prisma.issue.findUnique({
-      where: { id: String(id) },
+      where: { id: String(issueId) },
     });
 
     return issue;
   } catch {
     return null
   }
-}
+});
+
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -49,7 +51,10 @@ const IssueDetailPage = async ({ params }: Props) => {
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
-  const issue = await prisma.issue.findUnique({ where: { id: id } });
+  const issue = await getIssue(id);
+
+  if (!issue) return null;
+
   return {
     title: issue?.title,
     description: 'Details of issue ' + issue?.id
