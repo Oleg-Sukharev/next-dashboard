@@ -5,6 +5,7 @@ import { Issue, Status } from "@prisma/client";
 import Pagination from '../components/Pagination';
 import IssueTable, { columnNames as issueColumnNames } from './IssueTable';
 import { Flex } from '@radix-ui/themes';
+import { Metadata } from 'next';
 
 const PAGE_SIZE = 10;
 
@@ -53,5 +54,10 @@ const IssuesPage = async ({ searchParams }: {
 // Route Segment Config
 export const dynamic = 'force-dynamic';
 // export const revalidate = '60';
+
+export const metadata: Metadata = {
+  title: 'Issue Tracker - Issue List',
+  description: 'View all project issues'
+};
 
 export default IssuesPage;

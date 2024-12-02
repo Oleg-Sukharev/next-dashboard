@@ -20,7 +20,11 @@ const getIssue = async (id: string) => {
   }
 }
 
-const IssueDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+const IssueDetailPage = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
   const { id } = await params;
 
@@ -42,5 +46,14 @@ const IssueDetailPage = async ({ params }: { params: Promise<{ id: string }> }) 
     </Grid>
   );
 };
+
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const issue = await prisma.issue.findUnique({ where: { id: id } });
+  return {
+    title: issue?.title,
+    description: 'Details of issue ' + issue?.id
+  }
+}
 
 export default IssueDetailPage;
