@@ -26,10 +26,13 @@ const COLUMNS: {
     },
   ];
 
+const PAGE_SIZE = 2;
+
 const IssuesPage = async ({ searchParams }: {
   searchParams: Promise<{
     status: Status,
     orderBy: keyof Issue,
+    page: string
   }>
 }) => {
   const searchParamsData = await searchParams;
@@ -41,18 +44,24 @@ const IssuesPage = async ({ searchParams }: {
     ? searchParamsData.status
     : undefined;
 
+  const where = { status };
+
   const orderBy = COLUMNS
     .map(column => column.value)
     .includes(searchParamsData.orderBy)
     ? { [searchParamsData.orderBy]: 'asc' }
     : undefined;
 
+  const page = parseInt(searchParamsData.page) || 1;
+
   const issues = await prisma.issue.findMany({
-    where: {
-      status
-    },
-    orderBy
+    where,
+    orderBy,
+    skip: (page - 1) * PAGE_SIZE,
+    take: PAGE_SIZE,
   });
+
+  const issueCount = await prisma.issue.count({ where });
 
   return (
     <div>
@@ -92,7 +101,7 @@ const IssuesPage = async ({ searchParams }: {
         </Table.Body>
       </Table.Root>
 
-      <Pagination itemCount={100} pageSize={10} currentPage={10} />
+      <Pagination itemCount={issueCount} pageSize={PAGE_SIZE} currentPage={page} />
     </div>
   );
 };
