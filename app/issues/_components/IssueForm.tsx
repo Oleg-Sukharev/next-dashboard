@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ErrorMessage } from '@/app/components';
 import { issueSchema } from '@/app/validationSchemas';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Callout, Spinner, TextField, Skeleton } from '@radix-ui/themes';
+import { Button, Callout, Spinner, TextField } from '@radix-ui/themes';
 import 'easymde/dist/easymde.min.css';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -61,9 +61,6 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             <SimpleMDE
               placeholder="Description"
               {...field}
-            // options={{
-            //   maxHeight: "200px"
-            // }}
             />
           )}
         />

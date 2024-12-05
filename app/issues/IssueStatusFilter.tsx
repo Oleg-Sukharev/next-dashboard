@@ -11,9 +11,12 @@ const IssueStatusFilter = () => {
   const onChange = (status: string) => {
     const params = new URLSearchParams();
     const statusValue = status !== "ALL" ? status : '';
+
     if (statusValue) params.append('status', statusValue);
-    if (searchParams.get('orderBy'))
+
+    if (searchParams.get('orderBy')) {
       params.append('orderBy', searchParams.get('orderBy')!);
+    }
 
     const query = params.size ? '/?' + params.toString() : '';
     router.push('/issues' + query);

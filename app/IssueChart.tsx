@@ -9,7 +9,6 @@ import {
   Bar,
 } from 'recharts';
 
-
 interface Props {
   issues: {
     open: number;
