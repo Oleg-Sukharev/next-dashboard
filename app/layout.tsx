@@ -8,9 +8,9 @@ import {
   Theme,
   // ThemePanel
 } from '@radix-ui/themes';
-import NavBar from './NavBar';
 import AuthProvider from "./auth/Provider";
 import QueryClientProvider from './QueryClientProvider';
+import NavBar from "./components/NavBar/NavBar";
 
 const font = Roboto({
   weight: ['400'],
