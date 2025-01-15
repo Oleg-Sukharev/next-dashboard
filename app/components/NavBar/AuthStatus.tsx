@@ -1,28 +1,29 @@
 "use client";
 
-import { Skeleton, Box, DropdownMenu, Avatar } from "@radix-ui/themes";
+import { Skeleton, Box, DropdownMenu, Avatar, Text } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const AuthStatus = () => {
   const { status, data: session } = useSession();
-  if (status === "loading") return <Skeleton className="rounded-full size-8" />;
+  if (status === "loading") return <Skeleton aria-label='Loading auth status...' className="rounded-full size-8" />;
 
-  if (status === "unauthenticated")
-    return <Link className="nav-link" href="/api/auth/signin">Login</Link>;
+  if (status === "unauthenticated") return <Link className="nav-link" href="/api/auth/signin">Login</Link>;
 
   return (
     <Box>
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
-          <Avatar
-            src={session!.user!.image!}
-            fallback="?"
-            size="2"
-            radius="full"
-            className="cursor-pointer"
-          // referrerPolicy="no-referrer"
-          />
+        <DropdownMenu.Trigger role="button">
+          <div>
+            <Avatar
+              src={session!.user!.image!}
+              fallback="?"
+              size="2"
+              radius="full"
+              className="cursor-pointer"
+            // referrerPolicy="no-referrer"
+            />
+          </div>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
           <DropdownMenu.Label>
