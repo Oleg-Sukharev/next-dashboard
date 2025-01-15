@@ -7,6 +7,14 @@ window.HTMLElement.prototype.scrollIntoView = vi.fn();
 window.HTMLElement.prototype.hasPointerCapture = vi.fn();
 window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 
+afterEach(() => {
+  vi.clearAllMocks();
+});
+
+vi.mock("next/navigation", () => ({
+  usePathname: vi.fn(),
+}));
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query) => ({
